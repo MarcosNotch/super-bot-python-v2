@@ -80,7 +80,6 @@ def build_trading_graph() -> StateGraph:
 
     graph.add_node("news_analysis", crypto_news_sentiment_node)
     graph.add_node("technical_analysis", technical_analysis_node)
-    graph.add_node("fear_greed_analysis", fear_greed_node)
     graph.add_node("support_resistance_analysis", support_resistance_node)
 
     # ===== FASE 2: TRADING COMMITTEE =====
@@ -103,10 +102,8 @@ def build_trading_graph() -> StateGraph:
     graph.add_edge("news_analysis", "technical_analysis")
 
     # Análisis Técnico → Fear & Greed
-    graph.add_edge("technical_analysis", "fear_greed_analysis")
+    graph.add_edge("technical_analysis", "support_resistance_analysis")
 
-    # Fear & Greed → Soporte/Resistencia
-    graph.add_edge("fear_greed_analysis", "support_resistance_analysis")
 
     # Soporte/Resistencia → Estratega
     graph.add_edge("support_resistance_analysis", "strategist")

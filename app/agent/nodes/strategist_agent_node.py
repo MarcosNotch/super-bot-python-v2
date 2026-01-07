@@ -177,10 +177,7 @@ def _format_context_for_prompt(context: Dict[str, any]) -> str:
         f"  • Sentimiento general: {context['news_sentiment']['sentiment'] or 'N/A'}",
         f"  • Contexto: {context['news_sentiment']['context_summary'] or 'N/A'}",
         f"  • Opinión de mercado: {context['news_sentiment']['market_opinion'] or 'N/A'}",
-        "",
-        "😨 FEAR & GREED INDEX:",
-        f"  • Índice: {context['fear_greed']['index'] or 'N/A'}/100",
-        f"  • Clasificación: {context['fear_greed']['classification'] or 'N/A'}",
+        ""
     ]
 
     return "\n".join(lines)

@@ -192,16 +192,15 @@ TU TRABAJO:
 4. Tomar la decisión final: BUY, SELL o HOLD
 
 REGLAS CRÍTICAS SOBRE LA POSICIÓN:
-- Si ya tienes POSICIÓN ABIERTA y el Estratega dice "buy" → Considerar HOLD (evitar sobreexposición)
+- Si ya tienes POSICIÓN ABIERTA y el Estratega dice "buy" → Considerar HOLD
 - Si NO tienes posición y el Estratega dice "buy" + riesgos bajos → Considerar BUY
 - Si tienes posición y el Abogado del Diablo identifica riesgos críticos → Considerar SELL
-- Si tienes posición y ambos tienen argumentos válidos → HOLD es prudente
-- Si NO tienes posición y riesgos son altos → HOLD (esperar mejor momento)
+- Si tienes posición y consideras que el precio seguira subiendo→ Considerar HOLD
 
 LÓGICA DE DECISIÓN:
 - BUY: Solo si NO tienes posición + argumentos del Estratega son fuertes + riesgos son manejables
 - SELL: Solo si TIENES posición + riesgos críticos identificados por el Abogado del Diablo
-- HOLD: Cuando hay duda, o ya tienes posición y no es momento de vender
+- HOLD: Solo si tiene una posicion y consideres que el precio seguira subiendo
 
 EVALUACIÓN:
 1. ¿Qué argumentos del Estratega son VÁLIDOS?
@@ -215,6 +214,7 @@ IMPORTANTE:
 - La posición actual es FACTOR CRÍTICO
 - Explica claramente por qué aceptas/rechazas cada argumento
 - Tu decisión debe ser COHERENTE con la posición actual
+- prioriza materializar las ganancias
 
 Devuelve SOLO un JSON con el formato especificado."""
 
@@ -229,10 +229,8 @@ Evalúa objetivamente ambos argumentos, considera la posición actual (CRÍTICO)
 y decide: BUY, SELL o HOLD.
 
 Recuerda:
-- Si ya tienes posición → HOLD o SELL (no agregar exposición)
-- Si no tienes posición → BUY o HOLD (según análisis)
-- Nunca sugieras BUY si ya hay posición abierta
-- Nunca sugieras SELL si no hay posición
+- Si ya tienes posición → HOLD o SELL 
+- Si no tienes posición → BUY o HOLD
 
 Devuelve SOLO JSON válido."""
 

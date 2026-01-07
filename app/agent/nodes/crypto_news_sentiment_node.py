@@ -61,7 +61,7 @@ async def crypto_news_sentiment_node(state: AgentState) -> AgentState:
         return state
 
     headlines = [
-        item.headline if item.headline else (item.summary or "") for item in news_response.news
+        item.summary if item.summary else (item.headline or "") for item in news_response.news
     ]
 
     prompt_news = _format_news_items_for_prompt(headlines=headlines)
@@ -71,10 +71,9 @@ async def crypto_news_sentiment_node(state: AgentState) -> AgentState:
         "Dado un conjunto de titulares recientes, debes:\n"
         "1) Resumir el contexto general en 3-6 frases.\n"
         "2) Dar una opinión breve sobre el impacto probable en el mercado cripto.\n"
-        "3) Clasificar el sentimiento global como: positive, negative, mixed o neutral.\n\n"
-        "Devuelve SOLO un JSON con las claves: context_summary, market_opinion, sentiment.\n"
-        "Ejemplo:\n"
-        '{"context_summary": "Bitcoin sube...","market_opinion": "Favorable...","sentiment": "positive"}'
+        "3) Clasificar el sentimiento global como: positive, negative.\n\n"
+        "4) Ten en cuenta como podria afectar al mercado del BITCOIN sobre todo lo demas, no importa si las noticias son de otras criptomonedas.\n\n"
+        "5) SOLO ten en cuenta las noticias relacionadas directamente a BITCOIN, descarta las demas para tu analisis.\n\n"
     )
 
     user_prompt = f"Titulares recientes ({limit} noticias):\n{prompt_news}\n\nAnaliza y devuelve JSON."

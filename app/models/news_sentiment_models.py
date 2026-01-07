@@ -20,7 +20,7 @@ class NewsSentimentAnalysis(BaseModel):
         min_length=10,
         description="Opinión breve sobre el impacto probable en el mercado cripto",
     )
-    sentiment: Literal["positive", "negative", "mixed", "neutral"] = Field(
+    sentiment: Literal["positive", "negative"] = Field(
         ..., description="Sentimiento global clasificado"
     )
 
