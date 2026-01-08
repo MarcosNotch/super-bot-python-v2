@@ -194,16 +194,6 @@ Puedes aprobar una idea si:
 - El contexto de mercado respalda el escenario
 
 ────────────────────────────
-TU INPUT
-────────────────────────────
-- Propuesta del Estratega (dirección, entrada, SL, TP, justificación)
-- Precio actual
-- Niveles de soporte y resistencia
-- Noticias (positivas / negativas / neutrales)
-- Fear & Greed Index
-- Posición actual del portfolio (si existe)
-
-────────────────────────────
 TU MISIÓN
 ────────────────────────────
 1. Verificar si la propuesta es COHERENTE con los datos
@@ -289,9 +279,6 @@ Devuelve SOLO JSON válido."""
         )
 
     state["skeptic_critique"] = f"""
-😈 CRÍTICA DEL ABOGADO DEL DIABLO
-
-Evaluación: {critique.overall_assessment.upper().replace('_', ' ')}
 
 Crítica Principal:
 {critique.main_critique}
@@ -299,8 +286,6 @@ Crítica Principal:
 🚨 RIESGOS IDENTIFICADOS:
 {risks_text}{contradictions_text}{missing_text}
 
-💡 Recomendación:
-{critique.recommendation}
 """
 
     # Limpieza de error si todo fue bien

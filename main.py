@@ -9,6 +9,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 
 from app.controller.trading import router as trading_router
 from app.database import close_db_connections
+from app.utils.scheduler import start_scheduler, stop_scheduler
 
 # Configurar logging
 logging.basicConfig(
@@ -29,10 +30,17 @@ async def lifespan(app: FastAPI):
     logger.info("🚀 Iniciando aplicación SuperBotV2...")
     logger.info("✅ Grafo de trading cargado")
 
+    # Iniciar scheduler de análisis automático
+    start_scheduler()
+
     yield
 
     # Shutdown
     logger.info("🔌 Cerrando conexiones...")
+
+    # Detener scheduler
+    stop_scheduler()
+
     await close_db_connections()
     logger.info("✅ Aplicación cerrada correctamente")
 

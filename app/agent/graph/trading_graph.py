@@ -19,6 +19,7 @@ from app.agent.nodes import (
     support_resistance_node,
     technical_analysis_node,
 )
+from app.agent.nodes.email_notification_node import send_email_notification_node
 from app.agent.state.agent_state import AgentState
 
 logger = logging.getLogger(__name__)
@@ -93,6 +94,11 @@ def build_trading_graph() -> StateGraph:
     # TODO: Agente 3: El Juez
     graph.add_node("executor", executor_agent_node)
 
+    # ===== FASE 3: NOTIFICACIÓN =====
+
+    # Nodo final: Enviar email con la decisión
+    graph.add_node("email_notification", send_email_notification_node)
+
     # ===== FLUJO DEL GRAFO (SECUENCIAL) =====
 
     # START → Noticias
@@ -108,12 +114,12 @@ def build_trading_graph() -> StateGraph:
     # Soporte/Resistencia → Estratega
     graph.add_edge("support_resistance_analysis", "strategist")
 
-    # Estratega → END
-    graph.add_edge("strategist", END)
-
-    # TODO: Cuando se implementen los otros agentes:
+    # Trading Committee Flow:
+    # Estratega → Escéptico → Ejecutor → Email Notification → END
     graph.add_edge("strategist", "skeptic")
     graph.add_edge("skeptic", "executor")
+    graph.add_edge("executor", "email_notification")
+    graph.add_edge("email_notification", END)
     #graph.add_conditional_edges(
     #    "executor",
     #    should_execute_trade,

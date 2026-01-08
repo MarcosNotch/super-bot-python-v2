@@ -106,7 +106,6 @@ def _build_debate_summary(state: AgentState) -> str:
     strategist_justification = state.get("strategist_justification", "N/A")
 
     # Crítica del Abogado del Diablo
-    skeptic_recommendation = state.get("skeptic_recommendation", "N/A")
     skeptic_risks = state.get("skeptic_risks", [])
     skeptic_critique = state.get("skeptic_critique", "N/A")
 
@@ -115,20 +114,14 @@ def _build_debate_summary(state: AgentState) -> str:
     return f"""
 === DEBATE: ESTRATEGA vs ABOGADO DEL DIABLO ===
 
-🎯 ESTRATEGA (The Opportunist):
+🎯 Agente ESTRATEGA:
   Propuesta: {strategist_direction.upper()}
   
   Justificación:
   {strategist_justification}
 
-😈 ABOGADO DEL DIABLO (The Skeptic):
-  Evaluación: {skeptic_recommendation.upper().replace('_', ' ')}
-  
-  Riesgos Identificados:
-{risks_text}
-  
-  Crítica Completa:
-  {skeptic_critique[:300]}...
+😈 Agente Esceptico:
+  {skeptic_critique}...
 """
 
 
@@ -231,8 +224,7 @@ y decide: BUY, SELL o HOLD.
 Recuerda:
 - Si ya tienes posición → HOLD o SELL 
 - Si no tienes posición → BUY o HOLD
-
-Devuelve SOLO JSON válido."""
+."""
 
     # 4. Ejecutar con AgentExecutor
     try:

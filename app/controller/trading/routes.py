@@ -136,3 +136,39 @@ async def health_check() -> dict:
         "version": "1.0.0",
     }
 
+
+@router.get(
+    "/scheduler/status",
+    status_code=status.HTTP_200_OK,
+    summary="Estado del scheduler de análisis automático",
+    description="""
+    Consulta el estado del scheduler de análisis automático.
+    
+    Muestra:
+    - Si el scheduler está activo
+    - Jobs programados (9:00 AM y 6:00 PM)
+    - Próxima ejecución de cada job
+    """,
+)
+async def scheduler_status() -> dict:
+    """Consulta el estado del scheduler.
+
+    Returns:
+        dict: Estado del scheduler y jobs programados.
+    """
+    status = get_scheduler_status()
+
+    return {
+        "scheduler_active": status["running"],
+        "scheduled_jobs": status["jobs"],
+        "config": {
+            "symbols": ["BTCUSD"],
+            "news_limit": 10,
+            "schedule": [
+                {"time": "09:00", "description": "Análisis matutino"},
+                {"time": "18:00", "description": "Análisis vespertino"},
+            ],
+        },
+    }
+
+

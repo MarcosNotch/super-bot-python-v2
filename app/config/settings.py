@@ -50,6 +50,17 @@ class Settings:
     mysql_pool_timeout: float = 30.0
     mysql_pool_recycle: int = 3600  # Recycle connections after 1 hour
 
+    # AWS SES Email Configuration
+    aws_ses_host: str = "email-smtp.us-east-1.amazonaws.com"
+    aws_ses_port: int = 587
+    aws_ses_username: str = "AKIAV7LYMC73ZKMUJVJK"
+    aws_ses_password: str = "BJ/Q43gzUCZJsKwS2lpldr7jO5o05sFf200ilLHonQ2W"
+    # IMPORTANTE: Debe ser un email verificado en AWS SES
+    # Para verificar un email: AWS Console -> SES -> Verified Identities -> Create Identity
+    aws_ses_from_email: str = os.getenv("AWS_SES_FROM_EMAIL", "contacto@tuconsorciodigital.com")
+    aws_ses_recipient_email: str = "marcoscanette1@gmail.com"
+    aws_ses_use_tls: bool = True
+
     model_config = {
         "env_file": ".env",
         "case_sensitive": False,
