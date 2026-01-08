@@ -68,8 +68,6 @@ def _build_position_context_text(position: Dict[str, any], symbol: str) -> str:
   • Precio promedio de compra: ${position['average_buy_price']:,.2f}
   • Valor estimado: ${position['current_quantity'] * position['average_buy_price']:,.2f}
 
-💵 Balance disponible: ${position['available_usd']:,.2f} USD
-
 ACCIONES DISPONIBLES:
   • SELL - Puedes cerrar la posición
   • HOLD - Mantener la posición actual
@@ -82,11 +80,9 @@ ACCIONES DISPONIBLES:
   • Cantidad: 0
   • Sin exposición al activo
 
-💵 Balance disponible: ${position['available_usd']:,.2f} USD
-
 ACCIONES DISPONIBLES:
   • BUY - Puedes abrir posición si el análisis es favorable
-  • HOLD - Esperar mejor oportunidad
+  • HOLD - Mantener la posición actual
 """
 
 
@@ -241,8 +237,6 @@ REGLAS SOBRE POSICIÓN ACTUAL:
 REGLAS DE ANÁLISIS:
 - Si el precio está en un soporte Y las noticias son positivas → BUSCA razón para comprar (si no tienes posición)
 - Si el precio está en resistencia Y las noticias son negativas → BUSCA razón para vender (si tienes posición)
-- Si Fear & Greed < 30 (Extreme Fear) → Oportunidad de compra contrarian
-- Si Fear & Greed > 80 (Extreme Greed) → Oportunidad de venta contrarian
 - Si NO hay confluencia clara → direction: "hold"
 
 IMPORTANTE:

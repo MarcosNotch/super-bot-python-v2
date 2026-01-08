@@ -228,7 +228,7 @@ Recuerda:
 
     # 4. Ejecutar con AgentExecutor
     try:
-        decision = await agent_executor.execute(
+            decision = await agent_executor.execute(
             system_prompt=system_prompt,
             user_prompt=user_prompt,
             response_model=ExecutorDecision,
